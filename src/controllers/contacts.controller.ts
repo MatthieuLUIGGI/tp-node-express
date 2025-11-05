@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { z } from "zod";
 import { store } from "../store/memory.store";
+import { logger } from "../utils/logger";
 
 const phoneRegex = /^[+()\-.\s0-9]{7,}$/;
 
@@ -19,6 +20,7 @@ export function listContacts(_req: Request, res: Response) {
 
 // POST /contacts
 export function createContact(req: Request, res: Response) {
+    logger.info({ body: req.body }, "Creating contact");
     const parsed = contactSchema.safeParse(req.body);
     if (!parsed.success) {
         return res.status(400).json({ error: "Invalid body", details: parsed.error.flatten() });
