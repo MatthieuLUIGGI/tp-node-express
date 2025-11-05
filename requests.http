@@ -1,0 +1,49 @@
+
+## `requests.http`
+```http
+### Ping
+GET http://localhost:3000/
+
+### Liste vide
+GET http://localhost:3000/contacts
+
+### Create
+POST http://localhost:3000/contacts
+Content-Type: application/json
+
+{
+  "name": "Alice",
+  "email": "alice@example.com",
+  "phone": "+33 6 11 22 33 44"
+}
+
+### List
+GET http://localhost:3000/contacts
+
+### Get by id
+GET http://localhost:3000/contacts/1
+
+### Update (PUT)
+PUT http://localhost:3000/contacts/1
+Content-Type: application/json
+
+{
+  "name": "Alice Liddell",
+  "email": "alice@newmail.com",
+  "phone": "+33 6 55 55 55 55"
+}
+
+### Delete
+DELETE http://localhost:3000/contacts/1
+
+### 404 get
+GET http://localhost:3000/contacts/999
+
+### 400 invalid JSON
+POST http://localhost:3000/contacts
+Content-Type: application/json
+
+{ "name": "Bob", "email": "oops" }
+
+### 405 patch
+PATCH http://localhost:3000/contacts
